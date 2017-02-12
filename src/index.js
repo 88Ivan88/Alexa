@@ -147,8 +147,8 @@ var languageStrings = {
             "HELP_REPROMT": "You can say things like, who learned the AI recently, or you can say exit...Now, what can I help you with?",
             "STOP_MESSAGE": "Goodbye!",
             "PERSON_INFO_REPEAT_MESSAGE": "Try saying repeat.",
-            "PERSON_INFO_NOT_FOUND_MESSAGE": "I\'m sorry, I currently do not know ",
-            "PERSON_INFO_FOUND_WITH_ITEM_NAME": "the person info for %s. ",
+            "PERSON_INFO_NOT_FOUND_MESSAGE": "I\'m sorry, I currently don\'t know ",
+            "PERSON_INFO_FOUND_WITH_ITEM_NAME": "the person info for %s skill. ",
             "PERSON_INFO_FOUND_WITHOUT_ITEM_NAME": "that skill. ",
             "PERSON_INFO_FOUND_REPROMPT": "What else can I help with?",
             "PERSON_INFO_FOUND_WITH_CONTRACT_INFO": "%s\'s %s"
