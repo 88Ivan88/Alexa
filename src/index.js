@@ -64,6 +64,9 @@ var handlers = {
         var userInfo = this.attributes['userinfo'];
         var speechOutput = "";
         var repromptSpeech = "";
+        if(!userInfo){
+            userInfo = this.t("PERSON_INFO");
+        }
         if ((itemSlotSex && itemSlotSex.value) && (itemSlotSex.value.toLowerCase() == "his" || itemSlotSex.value.toLowerCase() == "her")) {
             itemSlotSex = itemSlotSex.value.toLowerCase();
             if (itemSlotContactInfo && itemSlotContactInfo.value) {
@@ -76,13 +79,32 @@ var handlers = {
         } else if (itemSlotName && itemSlotName.value) {
             // if user want to ask question based on the previous conversation
             itemSlotName = itemSlotName.value.toLowerCase();
-            if (itemSlotName == userInfo["name"].toLowerCase()) {
+            if (userInfo["name"] && (itemSlotName == userInfo["name"].toLowerCase())) {
                 if (itemSlotContactInfo && itemSlotContactInfo.value) {
                     itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
                     speechOutput = "the " + itemSlotContactInfo + " of " + itemSlotName + " is " + userInfo[itemSlotContactInfo];
                     repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
                 } else {
-                        //TODO
+                    speechOutput = this.t("PERSON_INFO_NOT_FOUND_MESSAGE");
+                    repromptSpeech = this.t("PERSON_INFO_FOUND_REPROMPT");
+                    speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO",itemSlotName,itemSlotContactInfo);
+                }
+            }else{
+                userInfo = this.t("PERSON_INFO");
+                userInfo = userInfo[itemSlotName];
+                if(userInfo){//get the new person from user list
+                    if (itemSlotContactInfo && itemSlotContactInfo.value) {
+                        itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
+                        speechOutput = "the " + itemSlotContactInfo + " of " + itemSlotName + " is " + userInfo[itemSlotContactInfo];
+                        repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
+                    } else {
+                        speechOutput = this.t("PERSON_INFO_NOT_FOUND_MESSAGE");
+                        repromptSpeech = this.t("PERSON_INFO_FOUND_REPROMPT");
+                        speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO",itemSlotName,itemSlotContactInfo);
+                    }
+                }else{
+                    speechOutput = "sorry, currently we don't have the record for " + itemSlotName;
+                    repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
                 }
             }
 
@@ -90,7 +112,7 @@ var handlers = {
             speechOutput = "sorry, currently we don't record the information for this person";
             repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
         }
-        this.emit(':ask', speechOutput, repromptSpeech);
+        this.emit(':tell', speechOutput, repromptSpeech);
     },
 
     'AMAZON.HelpIntent': function () {
@@ -128,7 +150,8 @@ var languageStrings = {
             "PERSON_INFO_NOT_FOUND_MESSAGE": "I\'m sorry, I currently do not know ",
             "PERSON_INFO_FOUND_WITH_ITEM_NAME": "the person info for %s. ",
             "PERSON_INFO_FOUND_WITHOUT_ITEM_NAME": "that skill. ",
-            "PERSON_INFO_FOUND_REPROMPT": "What else can I help with?"
+            "PERSON_INFO_FOUND_REPROMPT": "What else can I help with?",
+            "PERSON_INFO_FOUND_WITH_CONTRACT_INFO": "%s\'s %s"
         }
     }
 };
