@@ -1,7 +1,12 @@
 SkillIntent who is good at {Item}
+SkillIntent who is good at {Item} technology
+SkillIntent who's good at {Item}
+SkillIntent who's good at {Item} technology
 SkillIntent who learned the {Item} recently
 SkillIntent who knows the {Item}
+SkillIntent who knows the {Item} technology
 SkillIntent who has been using the {Item}
+SkillIntent who has been using the {Item} technology
 
 
 PersonIntent what is {sex} {PersonInfo}
