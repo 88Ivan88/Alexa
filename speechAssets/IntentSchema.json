@@ -1,0 +1,30 @@
+{
+  "intents": [
+    {
+      "intent": "SkillIntent",
+      "slots": [
+        {
+          "name": "Item",
+          "type": "LIST_OF_ITEMS"
+        }
+      ]
+    },
+    {
+      "intent": "PersonIntent",
+      "slots": [
+        {
+          "name": "PersonInfo",
+          "type": "LIST_OF_PERSON_DETAIL"
+        },
+        {
+          "name": "sex",
+          "type": "LIST_OF_SEX"
+        },
+        {
+          "name": "name",
+          "type": "LIST_OF_NAME"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Skill",
+  "version": "1.0.0",
+  "description": "Alexa skill to find the person who has the corresponding skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill"
+  ],
+  "author": "Ivan Li",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "alexa-sdk": "^1.0.6"
+  }
+}

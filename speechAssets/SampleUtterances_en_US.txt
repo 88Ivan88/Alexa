@@ -1,0 +1,11 @@
+SkillIntent who is good at {Item}
+SkillIntent who learned the {Item} recently
+SkillIntent who knows the {Item}
+SkillIntent who has been using the {Item}
+
+
+PersonIntent what is {sex} {PersonInfo}
+PersonIntent do you know {sex} {PersonInfo}
+PersonIntent what is the {PersonInfo} of {name}
+PersonIntent do you know the {PersonInfo} of {name}
+PersonIntent tell me the {PersonInfo} of {name}
