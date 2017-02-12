@@ -30,16 +30,16 @@ var handlers = {
             itemName = itemSlot.value.toLowerCase();
         }
 
-        var cardTitle = this.t("DISPLAY_CARD_TITLE", this.t("SKILL_NAME"), itemName);
-        var persons = this.t("persons");
-        var person = persons[itemName];
+        var personSkills = this.t("SKILL_PERSON");
+        var personDetailInfo = this.t("PERSON_INFO");
+        var personName = personSkills[itemName];
 
-        if (person) {
-            var answer = "According to the matching result," + person.name + " is good at " + itemName;
+        if (personName) {
+            var answer = "According to the matching result," + personName + " is good at " + itemName;
             this.attributes['speechOutput'] = answer;
             this.attributes['repromptSpeech'] = this.t("PERSON_INFO_REPEAT_MESSAGE");
-            this.attributes['userinfo'] = person;
-            this.emit(':askWithCard', answer, this.attributes['repromptSpeech'], this.t("SKILL_NAME"));
+            this.attributes['userinfo'] = personDetailInfo[personName];
+            this.emit(':ask', answer, this.attributes['repromptSpeech']);
 
         } else {
             var speechOutput = this.t("PERSON_INFO_NOT_FOUND_MESSAGE");
@@ -59,26 +59,27 @@ var handlers = {
     },
     'PersonIntent': function () {
         var itemSlotSex = this.event.request.intent.slots.sex;
-        var itemSlotPersonInfo = this.event.request.intent.slots.PersonInfo;
+        var itemSlotContactInfo = this.event.request.intent.slots.contactInfo;
         var itemSlotName = this.event.request.intent.slots.name;
         var userInfo = this.attributes['userinfo'];
         var speechOutput = "";
         var repromptSpeech = "";
-        if (itemSlotSex && itemSlotSex.value) {
+        if ((itemSlotSex && itemSlotSex.value) && (itemSlotSex.value.toLowerCase() == "his" || itemSlotSex.value.toLowerCase() == "her")) {
             itemSlotSex = itemSlotSex.value.toLowerCase();
-            if (itemSlotPersonInfo && itemSlotPersonInfo.value) {
-                itemSlotPersonInfo = itemSlotPersonInfo.value.toLowerCase();
-                speechOutput = itemSlotSex + " " + itemSlotPersonInfo + " is " + userInfo[itemSlotPersonInfo];
+            if (itemSlotContactInfo && itemSlotContactInfo.value) {
+                itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
+                speechOutput = itemSlotSex + " " + itemSlotContactInfo + " is " + userInfo[itemSlotContactInfo];
             } else {
                 speechOutput = "sorry, I don't understand the information you ask.";
             }
             repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
         } else if (itemSlotName && itemSlotName.value) {
             // if user want to ask question based on the previous conversation
-            if (itemSlotName.value.toLowerCase() === userInfo.name.toLowerCase()) {
-                if (itemSlotPersonInfo && itemSlotPersonInfo.value) {
-                    itemSlotPersonInfo = itemSlotPersonInfo.value.toLowerCase();
-                    speechOutput = "the " + itemSlotPersonInfo + " of " + itemSlotName.value.toLowerCase() + " is " + userInfo[itemSlotPersonInfo];
+            itemSlotName = itemSlotName.value.toLowerCase();
+            if (itemSlotName == userInfo["name"].toLowerCase()) {
+                if (itemSlotContactInfo && itemSlotContactInfo.value) {
+                    itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
+                    speechOutput = "the " + itemSlotContactInfo + " of " + itemSlotName + " is " + userInfo[itemSlotContactInfo];
                     repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
                 } else {
                         //TODO
@@ -114,7 +115,8 @@ var handlers = {
 var languageStrings = {
     "en-US": {
         "translation": {
-            "persons": personInfo.PERSON_EN_US,
+            "SKILL_PERSON": personInfo.PERSON_SKILL_EN_US,
+            "PERSON_INFO" : personInfo.PERSON_INFO_EN_US,
             "SKILL_NAME": "Skill finder",
             "WELCOME_MESSAGE": "Welcome to %s. You can ask a question like, who is good at AI technology ? ... Now, what can I help you with.",
             "WELCOME_REPROMT": "For instructions on what you can say, please say help me.",

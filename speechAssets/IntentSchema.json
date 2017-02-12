@@ -13,8 +13,8 @@
       "intent": "PersonIntent",
       "slots": [
         {
-          "name": "PersonInfo",
-          "type": "LIST_OF_PERSON_DETAIL"
+          "name": "contactInfo",
+          "type": "LIST_OF_CONTACT_INFO"
         },
         {
           "name": "sex",
