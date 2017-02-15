@@ -64,7 +64,7 @@ var handlers = {
         var userInfo = this.attributes['userinfo'];
         var speechOutput = "";
         var repromptSpeech = "";
-        if(!userInfo){
+        if (!userInfo) {
             userInfo = this.t("PERSON_INFO");
         }
         if ((itemSlotSex && itemSlotSex.value) && (itemSlotSex.value.toLowerCase() == "his" || itemSlotSex.value.toLowerCase() == "her")) {
@@ -87,12 +87,12 @@ var handlers = {
                 } else {
                     speechOutput = this.t("PERSON_INFO_NOT_FOUND_MESSAGE");
                     repromptSpeech = this.t("PERSON_INFO_FOUND_REPROMPT");
-                    speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO",itemSlotName,itemSlotContactInfo);
+                    speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO", itemSlotName, itemSlotContactInfo);
                 }
-            }else{
+            } else {
                 userInfo = this.t("PERSON_INFO");
                 userInfo = userInfo[itemSlotName];
-                if(userInfo){//get the new person from user list
+                if (userInfo) {//get the new person from user list
                     if (itemSlotContactInfo && itemSlotContactInfo.value) {
                         itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
                         speechOutput = "the " + itemSlotContactInfo + " of " + itemSlotName + " is " + userInfo[itemSlotContactInfo];
@@ -100,9 +100,9 @@ var handlers = {
                     } else {
                         speechOutput = this.t("PERSON_INFO_NOT_FOUND_MESSAGE");
                         repromptSpeech = this.t("PERSON_INFO_FOUND_REPROMPT");
-                        speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO",itemSlotName,itemSlotContactInfo);
+                        speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO", itemSlotName, itemSlotContactInfo);
                     }
-                }else{
+                } else {
                     speechOutput = "sorry, currently we don't have the record for " + itemSlotName;
                     repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
                 }
@@ -112,7 +112,7 @@ var handlers = {
             speechOutput = "sorry, currently we don't record the information for this person";
             repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
         }
-        this.emit(':tell', speechOutput, repromptSpeech);
+        this.emit(':ask', speechOutput, repromptSpeech);
     },
 
     'AMAZON.HelpIntent': function () {
@@ -138,7 +138,7 @@ var languageStrings = {
     "en-US": {
         "translation": {
             "SKILL_PERSON": personInfo.PERSON_SKILL_EN_US,
-            "PERSON_INFO" : personInfo.PERSON_INFO_EN_US,
+            "PERSON_INFO": personInfo.PERSON_INFO_EN_US,
             "SKILL_NAME": "Skill finder",
             "WELCOME_MESSAGE": "Welcome to %s. You can ask a question like, who is good at AI technology ? ... Now, what can I help you with.",
             "WELCOME_REPROMT": "For instructions on what you can say, please say help me.",
