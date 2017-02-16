@@ -32,13 +32,26 @@ var handlers = {
 
         var personSkills = this.t("SKILL_PERSON");
         var personDetailInfo = this.t("PERSON_INFO");
-        var personName = personSkills[itemName];
-
-        if (personName) {
-            var answer = "According to the matching result," + personName + " is good at " + itemName;
+        var personNames = personSkills[itemName];
+        //find the user list who are good at corresponding skill.
+        if (personNames) {
+            var answer = "According to the matching result, ";
+            if(personNames instanceof Array && personNames.length >1){
+                for (var i = 0; i < personNames.length; i++) {
+                    var personName = personNames[i];
+                    answer += personName;
+                    if (i < personNames.length - 1) {
+                        answer += ",";
+                    }
+                }
+                answer +=" are";
+            }else{
+                answer += personNames;
+                answer += " is";
+            }
+            answer += " good at " + itemName;
             this.attributes['speechOutput'] = answer;
             this.attributes['repromptSpeech'] = this.t("PERSON_INFO_REPEAT_MESSAGE");
-            this.attributes['userinfo'] = personDetailInfo[personName];
             this.emit(':ask', answer, this.attributes['repromptSpeech']);
 
         } else {
@@ -58,28 +71,15 @@ var handlers = {
         }
     },
     'PersonIntent': function () {
-        var itemSlotSex = this.event.request.intent.slots.sex;
         var itemSlotContactInfo = this.event.request.intent.slots.contactInfo;
         var itemSlotName = this.event.request.intent.slots.name;
-        var userInfo = this.attributes['userinfo'];
         var speechOutput = "";
         var repromptSpeech = "";
-        if (!userInfo) {
-            userInfo = this.t("PERSON_INFO");
-        }
-        if ((itemSlotSex && itemSlotSex.value) && (itemSlotSex.value.toLowerCase() == "his" || itemSlotSex.value.toLowerCase() == "her")) {
-            itemSlotSex = itemSlotSex.value.toLowerCase();
-            if (itemSlotContactInfo && itemSlotContactInfo.value) {
-                itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
-                speechOutput = itemSlotSex + " " + itemSlotContactInfo + " is " + userInfo[itemSlotContactInfo];
-            } else {
-                speechOutput = "sorry, I don't understand the information you ask.";
-            }
-            repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
-        } else if (itemSlotName && itemSlotName.value) {
-            // if user want to ask question based on the previous conversation
+        if (itemSlotName && itemSlotName.value) {
             itemSlotName = itemSlotName.value.toLowerCase();
-            if (userInfo["name"] && (itemSlotName == userInfo["name"].toLowerCase())) {
+            var userInfo = this.t("PERSON_INFO");
+            userInfo = userInfo[itemSlotName];
+            if (userInfo) {//get the new person from user list
                 if (itemSlotContactInfo && itemSlotContactInfo.value) {
                     itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
                     speechOutput = "the " + itemSlotContactInfo + " of " + itemSlotName + " is " + userInfo[itemSlotContactInfo];
@@ -90,27 +90,9 @@ var handlers = {
                     speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO", itemSlotName, itemSlotContactInfo);
                 }
             } else {
-                userInfo = this.t("PERSON_INFO");
-                userInfo = userInfo[itemSlotName];
-                if (userInfo) {//get the new person from user list
-                    if (itemSlotContactInfo && itemSlotContactInfo.value) {
-                        itemSlotContactInfo = itemSlotContactInfo.value.toLowerCase();
-                        speechOutput = "the " + itemSlotContactInfo + " of " + itemSlotName + " is " + userInfo[itemSlotContactInfo];
-                        repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
-                    } else {
-                        speechOutput = this.t("PERSON_INFO_NOT_FOUND_MESSAGE");
-                        repromptSpeech = this.t("PERSON_INFO_FOUND_REPROMPT");
-                        speechOutput += this.t("PERSON_INFO_FOUND_WITH_CONTRACT_INFO", itemSlotName, itemSlotContactInfo);
-                    }
-                } else {
-                    speechOutput = "sorry, currently we don't have the record for " + itemSlotName;
-                    repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
-                }
+                speechOutput = "sorry, currently we don't have the record for " + itemSlotName;
+                repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
             }
-
-        } else {
-            speechOutput = "sorry, currently we don't record the information for this person";
-            repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
         }
         this.emit(':ask', speechOutput, repromptSpeech);
     },

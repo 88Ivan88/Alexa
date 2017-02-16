@@ -17,14 +17,22 @@
           "type": "LIST_OF_CONTACT_INFO"
         },
         {
-          "name": "sex",
-          "type": "LIST_OF_SEX"
-        },
-        {
           "name": "name",
           "type": "LIST_OF_NAME"
         }
       ]
+    },
+    {
+      "intent": "AMAZON.RepeatIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
     }
   ]
 }

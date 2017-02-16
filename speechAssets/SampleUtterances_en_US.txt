@@ -9,8 +9,6 @@ SkillIntent who has been using the {Item}
 SkillIntent who has been using the {Item} technology
 
 
-PersonIntent what is {sex} {contactInfo}
-PersonIntent do you know {sex} {contactInfo}
 PersonIntent what is the {contactInfo} of {name}
 PersonIntent do you know the {contactInfo} of {name}
 PersonIntent tell me the {contactInfo} of {name}
