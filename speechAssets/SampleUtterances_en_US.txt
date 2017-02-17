@@ -1,3 +1,9 @@
+UserLoginIntent {name}
+UserLoginIntent my name is {name}
+UserLoginIntent please call me {name}
+UserLoginIntent this is {name}
+
+
 SkillIntent who is good at {Item}
 SkillIntent who is good at {Item} technology
 SkillIntent who's good at {Item}

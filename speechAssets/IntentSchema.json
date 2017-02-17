@@ -1,6 +1,15 @@
 {
   "intents": [
     {
+      "intent": "UserLoginIntent",
+      "slots": [
+        {
+          "name": "name",
+          "type": "LIST_OF_NAME"
+        }
+      ]
+    },
+    {
       "intent": "SkillIntent",
       "slots": [
         {
