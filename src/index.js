@@ -24,16 +24,16 @@ var handlers = {
         this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
     },
     'UserLoginIntent': function () {
-        var personInfos = require('./personInfo.json');
+       // var personInfos = require('./personInfo.json');
         var speechOutput = "";
         var repromptSpeech = "";
         var itemSlotName = this.event.request.intent.slots.name;
         if (itemSlotName && itemSlotName.value) {
             itemSlotName = itemSlotName.value.toLowerCase();
-            var userInfo = personInfos.PERSON_INFO_EN_US;
-            userInfo = userInfo[itemSlotName];
-            if (userInfo) {
-                var lastLoginTime = userInfo["lastLoginTime"];
+            //var userInfo = personInfos.PERSON_INFO_EN_US;
+         //   userInfo = userInfo[itemSlotName];
+           // if (userInfo) {
+              //  var lastLoginTime = userInfo["lastLoginTime"];
 
                 //TODO
                 //first time login to skill finder
@@ -48,10 +48,12 @@ var handlers = {
                 //     repromptSpeech = this.t("WELCOME_REPROMT_LONG_TIME", itemSlotName);
                 // }
              //   var err = util.updateLoginTime(itemSlotName, personInfos);
-                    speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
-                    repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
+              //      speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
+              //      repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
 
-            }
+            //}
+            speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
+            repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
         }
         this.attributes['speechOutput'] = speechOutput;
         this.attributes['repromptSpeech'] = repromptSpeech;
@@ -162,7 +164,7 @@ var languageStrings = {
             "LOGIN_REPROMT": "Please kindly tell me your name.",
             "WELCOME_MESSAGE_FIRST_TIME": "Nice to meet you %s, this is the first time you talk to me. I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_REPROMT_FIRST_TIME": "You can ask a question like, who is good at angular? You also can ask the person contact information to me... Now, what can I hekp you with ?",
-            "WELCOME_MESSAGE": "Nice to meet you, %s. I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
+            "WELCOME_MESSAGE": "Nice to meet you %s. I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_REPROMT": "I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_MESSAGE_LONG_TIME": "Nice to meet you %s. Long time no talk with you. I really miss you. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_REPROMT_LONG_TIME": "You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",

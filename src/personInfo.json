@@ -5,16 +5,19 @@
         "ai": "tim wang",
         "spring": "davy hou",
         "front end": "robin fu",
-        "back end" :["jackie huang", "neil xu"]
+        "back end" :["jackie huang", "neil xu"],
+        "project management" : "stone shi"
     },
     "PERSON_INFO_EN_US": {
         "neo wang": { "name" :"neo wang","a number": "a12341", "phone number": "123456", "lastLoginTime":""},
         "mark yang": {"name" :"mark yang", "a number": "a12342", "phone number": "98765", "lastLoginTime":""},
         "tim wang": {"name": "tim wang", "a number": "a12343", "phone number": "2345632", "lastLoginTime":""},
         "davy hou": {"name": "davy hou", "a number": "a12344", "phone number": "2345632", "lastLoginTime":""},
-        "robin fu": {"name": "robin", "a number": "a12345", "phone number": "2345632"},
+        "robin fu": {"name": "robin", "a number": "a12345", "phone number": "2345632","lastLoginTime":""},
         "jackie huang": {"name": "jackie huang", "a number": "a12346", "phone number": "2345632", "lastLoginTime":""},
         "neil xu": {"name": "neil xu", "a number": "a12347", "phone number": "2345632", "lastLoginTime":""},
-        "jenny liu": {"name": "jenny liu", "a number": "a12348", "phone number": "2345632", "lastLoginTime":""}
+        "jenny liu": {"name": "jenny liu", "a number": "a12348", "phone number": "2345632", "lastLoginTime":""},
+        "stone shi": {"name": "stone shi", "a number": "a12349", "phone number": "2345632", "lastLoginTime":""}
+
     }
 }
