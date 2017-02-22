@@ -32,6 +32,24 @@
       ]
     },
     {
+      "intent": "TeamEventsIntent",
+      "slots": [
+        {
+          "name": "teamName",
+          "type": "LIST_OF_TEAM_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "TeamStructureIntent",
+      "slots": [
+        {
+          "name": "teamName",
+          "type": "LIST_OF_TEAM_NAME"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.RepeatIntent"
     },
     {
