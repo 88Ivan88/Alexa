@@ -6,7 +6,8 @@
         "spring": "davy hou",
         "front end": "robin fu",
         "back end" :["jackie huang", "neil xu"],
-        "project management" : "stone shi"
+        "project management" : "stone shi",
+        "testing" : "irene du"
     },
     "PERSON_INFO_EN_US": {
         "neo wang": { "name" :"neo wang","a number": "a12341", "phone number": "123456", "lastLoginTime":""},
@@ -17,7 +18,8 @@
         "jackie huang": {"name": "jackie huang", "a number": "a12346", "phone number": "2345632", "lastLoginTime":""},
         "neil xu": {"name": "neil xu", "a number": "a12347", "phone number": "2345632", "lastLoginTime":""},
         "jenny liu": {"name": "jenny liu", "a number": "a12348", "phone number": "2345632", "lastLoginTime":""},
-        "stone shi": {"name": "stone shi", "a number": "a12349", "phone number": "2345632", "lastLoginTime":""}
+        "stone shi": {"name": "stone shi", "a number": "a12349", "phone number": "2345632", "lastLoginTime":""},
+        "irene du": {"name": "irene du", "a number": "a12350", "phone number": "2345632", "lastLoginTime":""}
 
     }
 }
