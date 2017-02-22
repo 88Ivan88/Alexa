@@ -22,7 +22,7 @@ PersonIntent tell me the {contactInfo} of {name}
 TeamStructureIntent tell me the team structure of {teamName} team.
 TeamStructureIntent I want to know the team structure of {teamName} team.
 TeamStructureIntent may I know the team members of {teamName} team.
-TeamStructureIntent please tell me who are in {teamName} team.
+TeamStructureIntent please tell me who are in the {teamName} team.
 
 TeamEventsIntent tell me the big events of {teamName} team.
 TeamEventsIntent I want to know the big events of {teamName} team.
