@@ -1,8 +1,9 @@
 {
   "TEAM_EVENTS": {
     "supernova": {
-      "scrum master": "Stone shi",
-      "team members": [
+      "scrumMaster": "jenny liu",
+      "productOwner": "rick",
+      "teamMembers": [
         "tim wang",
         "ivan li",
         "irene du"
@@ -10,8 +11,9 @@
       "events": ["Jenny liu has successfully passed CFA Investment Foundations eam and earned the investment Foundations Certificate. The CFA institute Investment Foundations certificate program covers the essentials of finance, ethics, and investment roles, providing a clear understanding of the global investment industry. Jenny demonstrated our strong continuous learning culture and the power as the digital technologist."]
     },
     "the force": {
-      "scrum master": "jenny liu",
-      "team members": [
+      "scrumMaster": "stone shi",
+      "productOwner" : "stone shi",
+      "teamMembers": [
         "robin fu",
         "michael liu",
         "henry zhang"

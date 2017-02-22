@@ -3,6 +3,7 @@
 var Alexa = require('alexa-sdk');
 var APP_ID = undefined; // TODO replace with your app ID (OPTIONAL).
 var personInfo = require('./personInfo.json');
+var teamEvents = require('./teamEvent.json');
 var util = require('./util');
 exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context);
@@ -131,7 +132,59 @@ var handlers = {
         }
         this.emit(':ask', speechOutput, repromptSpeech);
     },
-
+    'TeamEventsIntent': function () {
+        var itemSlotTeamName = this.event.request.intent.slots.teamName;
+        var speechOutput = "";
+        var repromptSpeech = "";
+        if (itemSlotTeamName && itemSlotTeamName.value) {
+            itemSlotTeamName = itemSlotTeamName.value.toLowerCase();
+            var events = teamEvents.TEAM_EVENTS[itemSlotTeamName].events;
+            if(events instanceof Array && events.length > 0){
+                for(var i = 0 ; i< events.length ; i++){
+                    var eventNo = i+1;
+                    speechOutput += " the event " + eventNo+ " is :" + events[i] + ";";
+                }
+            }else{
+                speechOutput = "there are no big events from " + itemSlotTeamName + " team.";
+            }
+            repromptSpeech = "Try saying repeat."
+        }else{
+            speechOutput = "sorry, currently I don't have the record for this team.";
+            repromptSpeech = "sorry, currently I don't have the record for this team.";
+        }
+        this.emit(':ask', speechOutput, repromptSpeech);
+    },
+    'TeamStructureIntent': function () {
+        var itemSlotTeamName = this.event.request.intent.slots.teamName;
+        var speechOutput = "";
+        var repromptSpeech = "";
+        if (itemSlotTeamName && itemSlotTeamName.value) {
+            itemSlotTeamName = itemSlotTeamName.value.toLowerCase();
+            var po = teamEvents.TEAM_EVENTS[itemSlotTeamName].productOwner;
+            var scrumMaster = teamEvents.TEAM_EVENTS[itemSlotTeamName].scrumMaster;
+            var members = teamEvents.TEAM_EVENTS[itemSlotTeamName].teamMembers;
+            speechOutput = "In "+ itemSlotTeamName +" team the product owner is " + po +", the scrum master is " + scrumMaster + ", " +
+                "the team members";
+            if(members instanceof Array && members.length >1){
+                speechOutput +=" are ";
+                for (var i = 0; i < members.length; i++) {
+                    var member = members[i];
+                    speechOutput += member;
+                    if (i < members.length - 1) {
+                        speechOutput += ",";
+                    }
+                }
+            }else{
+                speechOutput += " is ";
+                speechOutput += members[0];
+            }
+            repromptSpeech = "Try saying repeat."
+        }else{
+            speechOutput = "sorry, currently I don't have the record for this team.";
+            repromptSpeech = "sorry, currently I don't have the record for this team.";
+        }
+        this.emit(':ask', speechOutput, repromptSpeech);
+    },
     'AMAZON.HelpIntent': function () {
         this.attributes['speechOutput'] = this.t("HELP_MESSAGE");
         this.attributes['repromptSpeech'] = this.t("HELP_REPROMT");
@@ -152,8 +205,6 @@ var handlers = {
     'Unhandled': function() {
         this.emit(':tell', 'what are you talking about ? I can not understand ! I think maybe I need to take a good rest. Bye Bye. ');
     }
-
-
 };
 
 var languageStrings = {

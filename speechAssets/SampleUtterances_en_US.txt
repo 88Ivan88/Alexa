@@ -18,3 +18,12 @@ SkillIntent who has been using the {Item} technology
 PersonIntent what is the {contactInfo} of {name}
 PersonIntent do you know the {contactInfo} of {name}
 PersonIntent tell me the {contactInfo} of {name}
+
+TeamStructureIntent tell me the team structure of {teamName} team.
+TeamStructureIntent I want to know the team structure of {teamName} team.
+TeamStructureIntent may I know the team members of {teamName} team.
+TeamStructureIntent please tell me who are in {teamName} team.
+
+TeamEventsIntent tell me the big events of {teamName} team.
+TeamEventsIntent I want to know the big events of {teamName} team.
+TeamEventsIntent may I know the big events of {teamName} team.
