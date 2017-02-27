@@ -22,6 +22,20 @@
         "the team has been doing cross pair programming for several sprints, but took a small break in sprints 57 and 58 to focus on performance testing and issues related to Crossover roll out. We are now resuming pair programming in Sprint 59. So far, the team enjoys pair programming and finds it a valuable tool for driving cross functional learning. We will conduct an assessment at the end of the year to evaluate how we want to proceed with the goal.",
         "The team has had training from Joe Hafeman as well as through the standard DP training courses. As a result of some of the training, the QA team is now able to develop automated tests for DP."
       ]
+    },
+    "digital dream": {
+      "scrumMaster": "Sri",
+      "productOwner": "Terriann",
+      "teamMembers": [
+        "mark ma",
+        "paul guan",
+        "olivia he",
+        "sam diao",
+        "shiela zhang"
+      ],
+      "events": [
+        "Defensive PAS will be launched on March."
+      ]
     }
   }
 }
