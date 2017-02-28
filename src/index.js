@@ -18,48 +18,13 @@ var handlers = {
     //Use LaunchRequest, instead of NewSession if you want to use the one-shot model
     // Alexa, ask [my-skill-invocation-name] to (do something)...
     'LaunchRequest': function () {
-        this.attributes['speechOutput'] = this.t("LOGIN_MESSAGE", this.t("SKILL_NAME"));
+        this.attributes['speechOutput'] = this.t("LOGIN_MESSAGE_NO_USER_NAME", this.t("SKILL_NAME"));
         // If the user either does not reply to the welcome message or says something that is not
         // understood, they will be prompted again with this text.
-        this.attributes['repromptSpeech'] = this.t("LOGIN_REPROMT");
+        this.attributes['repromptSpeech'] = this.t("WELCOME_REPROMT");
         this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
     },
-    'UserLoginIntent': function () {
-       // var personInfos = require('./personInfo.json');
-        var speechOutput = "";
-        var repromptSpeech = "";
-        var itemSlotName = this.event.request.intent.slots.name;
-        if (itemSlotName && itemSlotName.value) {
-            itemSlotName = itemSlotName.value.toLowerCase();
-            //var userInfo = personInfos.PERSON_INFO_EN_US;
-         //   userInfo = userInfo[itemSlotName];
-           // if (userInfo) {
-              //  var lastLoginTime = userInfo["lastLoginTime"];
 
-                //TODO
-                //first time login to skill finder
-                // if(lastLoginTime == ""){
-                //     speechOutput = this.t("WELCOME_MESSAGE_FIRST_TIME", itemSlotName);
-                //     repromptSpeech = this.t("WELCOME_REPROMT_FIRST_TIME", itemSlotName);
-                // }else if(util.daysCalculation(lastLoginTime) <= 5){
-                //     speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
-                //     repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
-                // }else{
-                //     speechOutput = this.t("WELCOME_MESSAGE_LONG_TIME", itemSlotName);
-                //     repromptSpeech = this.t("WELCOME_REPROMT_LONG_TIME", itemSlotName);
-                // }
-             //   var err = util.updateLoginTime(itemSlotName, personInfos);
-              //      speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
-              //      repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
-
-            //}
-            speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
-            repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
-        }
-        this.attributes['speechOutput'] = speechOutput;
-        this.attributes['repromptSpeech'] = repromptSpeech;
-        this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
-    },
     'SkillIntent': function () {
         var itemSlot = this.event.request.intent.slots.Item;
         var itemName;
@@ -130,7 +95,7 @@ var handlers = {
                 repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
             }
         }else{
-            speechOutput = "sorry, currently we don't have the record for this person."
+            speechOutput = "sorry, currently we don't have the record for this person.";
             repromptSpeech = this.t("PERSON_INFO_REPEAT_MESSAGE");
         }
         this.emit(':ask', speechOutput, repromptSpeech);
@@ -153,7 +118,7 @@ var handlers = {
                 }else{
                     speechOutput = "there are no big events from " + itemSlotTeamName + " team.";
                 }
-                repromptSpeech = "Try saying repeat."
+                repromptSpeech = "Try saying repeat.";
             }
         }
         this.emit(':ask', speechOutput, repromptSpeech);
@@ -210,6 +175,46 @@ var handlers = {
     'Unhandled': function() {
         this.emit(':tell', 'what are you talking about ? I can not understand ! I think maybe I need to take a good rest. Bye Bye. ');
     }
+
+    // 'UserLoginIntent': function () {
+    //    // var personInfos = require('./personInfo.json');
+    //     var speechOutput = "";
+    //     var repromptSpeech = "";
+    //     var itemSlotName = this.event.request.intent.slots.name;
+    //     if (itemSlotName && itemSlotName.value) {
+    //         itemSlotName = itemSlotName.value.toLowerCase();
+    //         //var userInfo = personInfos.PERSON_INFO_EN_US;
+    //      //   userInfo = userInfo[itemSlotName];
+    //        // if (userInfo) {
+    //           //  var lastLoginTime = userInfo["lastLoginTime"];
+    //
+    //             //TODO
+    //             //first time login to skill finder
+    //             // if(lastLoginTime == ""){
+    //             //     speechOutput = this.t("WELCOME_MESSAGE_FIRST_TIME", itemSlotName);
+    //             //     repromptSpeech = this.t("WELCOME_REPROMT_FIRST_TIME", itemSlotName);
+    //             // }else if(util.daysCalculation(lastLoginTime) <= 5){
+    //             //     speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
+    //             //     repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
+    //             // }else{
+    //             //     speechOutput = this.t("WELCOME_MESSAGE_LONG_TIME", itemSlotName);
+    //             //     repromptSpeech = this.t("WELCOME_REPROMT_LONG_TIME", itemSlotName);
+    //             // }
+    //          //   var err = util.updateLoginTime(itemSlotName, personInfos);
+    //           //      speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
+    //           //      repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
+    //
+    //         //}
+    //         speechOutput = this.t("WELCOME_MESSAGE", itemSlotName);
+    //         repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
+    //     }else{
+    //         speechOutput = this.t("WELCOME_MESSAGE_USER_NOT_FOUND", itemSlotName);
+    //         repromptSpeech = this.t("WELCOME_REPROMT", itemSlotName);
+    //     }
+    //     this.attributes['speechOutput'] = speechOutput;
+    //     this.attributes['repromptSpeech'] = repromptSpeech;
+    //     this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
+    // },
 };
 
 var languageStrings = {
@@ -217,12 +222,14 @@ var languageStrings = {
         "translation": {
             "SKILL_NAME": "Skill finder",
             "LOGIN_MESSAGE": "hey, my name is Alexa %s. I'm so happy you can talk to me. May I know your name please?",
+            "LOGIN_MESSAGE_NO_USER_NAME": "hey, my name is Alexa %s. Nice to meet you, I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "LOGIN_REPROMT": "Please kindly tell me your name.",
             "WELCOME_MESSAGE_FIRST_TIME": "Nice to meet you %s, this is the first time you talk to me. I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_REPROMT_FIRST_TIME": "You can ask a question like, who is good at angular? You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_MESSAGE": "Nice to meet you %s. I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
-            "WELCOME_REPROMT": "I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
+            "WELCOME_REPROMT": "You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_MESSAGE_LONG_TIME": "Nice to meet you %s. Long time no talk with you. I really miss you. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
+            "WELCOME_MESSAGE_USER_NOT_FOUND": "Nice to meet you. I'm very glad to answer your questions. You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "WELCOME_REPROMT_LONG_TIME": "You can ask a question like, who is good at AI technology. You also can ask the person contact information to me... Now, what can I hekp you with ?",
             "DISPLAY_CARD_TITLE": "%s  - skill for %s.",
             "HELP_MESSAGE": "You can ask questions such as, who knows the AI technology, or, you can say exit...Now, what can I help you with?",

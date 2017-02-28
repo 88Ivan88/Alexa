@@ -10,16 +10,24 @@
         "testing" : "irene du"
     },
     "PERSON_INFO_EN_US": {
-        "neo wang": { "name" :"neo wang","a number": "a12341", "phone number": "123456", "lastLoginTime":""},
-        "mark yang": {"name" :"mark yang", "a number": "a12342", "phone number": "98765", "lastLoginTime":""},
-        "tim wang": {"name": "tim wang", "a number": "a12343", "phone number": "2345632", "lastLoginTime":""},
-        "davy hou": {"name": "davy hou", "a number": "a12344", "phone number": "2345632", "lastLoginTime":""},
-        "robin fu": {"name": "robin", "a number": "a12345", "phone number": "2345632","lastLoginTime":""},
-        "jackie huang": {"name": "jackie huang", "a number": "a12346", "phone number": "2345632", "lastLoginTime":""},
-        "neil xu": {"name": "neil xu", "a number": "a12347", "phone number": "2345632", "lastLoginTime":""},
-        "jenny liu": {"name": "jenny liu", "a number": "a12348", "phone number": "2345632", "lastLoginTime":""},
-        "stone shi": {"name": "stone shi", "a number": "a12349", "phone number": "2345632", "lastLoginTime":""},
-        "irene du": {"name": "irene du", "a number": "a12350", "phone number": "2345632", "lastLoginTime":""}
+        "neo wang": { "name" :"neo wang","a number": "a12341", "phone number": "<say-as interpret-as='telephone'>13591391461</say-as>", "lastLoginTime":""},
+        "mark yang": {"name" :"mark yang", "a number": "a12342", "phone number": "<say-as interpret-as='telephone'>13591391462</say-as>", "lastLoginTime":""},
+        "tim wang": {"name": "tim wang", "a number": "a12343", "phone number": "<say-as interpret-as='telephone'>13591391463</say-as>", "lastLoginTime":""},
+        "davy hou": {"name": "davy hou", "a number": "a12344", "phone number": "<say-as interpret-as='telephone'>13591391464</say-as>", "lastLoginTime":""},
+        "robin fu": {"name": "robin", "a number": "a12345", "phone number": "<say-as interpret-as='telephone'>13591391465</say-as>","lastLoginTime":""},
+        "jackie huang": {"name": "jackie huang", "a number": "a12346", "phone number": "<say-as interpret-as='telephone'>13591391466</say-as>", "lastLoginTime":""},
+        "neil xu": {"name": "neil xu", "a number": "a12347", "phone number": "<say-as interpret-as='telephone'>13591391467</say-as>", "lastLoginTime":""},
+        "jenny liu": {"name": "jenny liu", "a number": "a12348", "phone number": "<say-as interpret-as='telephone'>13591391468</say-as>", "lastLoginTime":""},
+        "stone shi": {"name": "stone shi", "a number": "a12349", "phone number": "<say-as interpret-as='telephone'>13591391469</say-as>", "lastLoginTime":""},
+        "irene du": {"name": "irene du", "a number": "a12350", "phone number": "<say-as interpret-as='telephone'>13591391460</say-as>", "lastLoginTime":""},
+        "mark ma": {"name": "mark ma", "a number": "a12351", "phone number": "<say-as interpret-as='telephone'>13591391450</say-as>", "lastLoginTime":""},
+        "paul guan": {"name": "paul guan", "a number": "a12352", "phone number": "<say-as interpret-as='telephone'>13591391451</say-as>", "lastLoginTime":""},
+        "olivia he": {"name": "olivia he", "a number": "a12353", "phone number": "<say-as interpret-as='telephone'>13591391452</say-as>", "lastLoginTime":""},
+        "sam diao": {"name": "sam diao", "a number": "a12354", "phone number": "<say-as interpret-as='telephone'>13591391453</say-as>", "lastLoginTime":""},
+        "shiela zhang": {"name": "shiela zhang", "a number": "a12355", "phone number": "<say-as interpret-as='telephone'>13591391454</say-as>", "lastLoginTime":""},
+        "andy wang": {"name": "andy wang", "a number": "a12356", "phone number": "<say-as interpret-as='telephone'>13591391455</say-as>", "lastLoginTime":""}
+
+
 
     }
 }
